@@ -4,7 +4,6 @@ import com.calculator.demo.Entity.CalculatorOperator;
 import com.calculator.demo.service.CalculatorService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -68,10 +67,27 @@ class CalculatorApplicationTests {
 		assertEquals(-5, result);
 	}
 
-//	@Test
-//	public void divToZero() {
-//		Calculator calculator = new Calculator(10, 0, CalculatorOperator.DIVISION);
-//		double result = calculatorService.calculateNumbers(calculator);
-//		assertEquals(0, result);
-//	}
+	@Test
+	public void testCalculateSquareRoot() {
+		double result1 = calculatorService.calculateSquareRoot(25);
+		assertEquals(5.0, result1, 0.001);
+
+		double result2 = calculatorService.calculateSquareRoot(0);
+		assertEquals(0.0, result2, 0.001);
+
+		double result3 = calculatorService.calculateSquareRoot(-25);
+		assertEquals(Double.NaN, result3, 0.001);
+	}
+
+	@Test
+	public void testCalculateExponentiation() {
+		double result1 = calculatorService.calculateExponentiation(2, 3);
+		assertEquals(8.0, result1, 0.001);
+
+		double result2 = calculatorService.calculateExponentiation(5, 0);
+		assertEquals(1.0, result2, 0.001);
+
+		double result3 = calculatorService.calculateExponentiation(4, -2);
+		assertEquals(0.0625, result3, 0.001);
+	}
 }
